@@ -1,0 +1,115 @@
+/* Gradient Background */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.contact-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364, #1a2a6c, #b21f1f, #fdbb2d);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphism Box */
+.contact-form-box {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  width: 90%;
+  margin: auto;
+}
+
+/* Input Styling */
+.form-control {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-control:focus {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid #fff;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Gradient Button */
+.btn-gradient {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  font-weight: bold;
+  border-radius: 30px;
+  transition: 0.4s ease;
+  text-decoration: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn-gradient:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  transform: scale(1.05);
+  color: #fff;
+}
+
+/* Back to Home Button */
+.btn-outline-light {
+  border: 2px solid #fff;
+  border-radius: 30px;
+  padding: 10px 25px;
+  font-weight: bold;
+  transition: all 0.4s ease;
+  color: #fff;
+  background: transparent;
+}
+
+.btn-outline-light:hover {
+  background: #fff;
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* Contact Info Styling */
+.contact-info {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.contact-info h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.contact-info p {
+  margin: 5px 0;
+  font-size: 1.1em;
+}

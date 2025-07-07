@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6fc;
+}
+
+.pricing-container {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.pricing-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.plans {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.plan {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 300px;
+  transition: transform 0.3s;
+}
+
+.plan:hover {
+  transform: translateY(-10px);
+}
+
+.plan h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.price {
+  font-size: 2rem;
+  margin: 15px 0;
+  color: #007bff;
+}
+
+.plan ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin: 20px 0;
+  color: #555;
+}
+
+.plan ul li {
+  margin: 10px 0;
+  font-size: 0.95rem;
+}
+
+.select-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.select-btn:hover {
+  background: #0056b3;
+}
+
+.prime {
+  border: 2px solid gold;
+}
+
+.prime-btn {
+  background: gold;
+  color: #222;
+}
+
+.prime-btn:hover {
+  background: goldenrod;
+}

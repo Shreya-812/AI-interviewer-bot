@@ -1,0 +1,344 @@
+
+/* ========== Global Styles ========== */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========== 🎉 Welcome Section ========== */
+.welcome-section {
+  text-align: center;
+  padding: 60px 20px 20px;
+  background: #ffffff;
+}
+
+.welcome-title {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #6a11cb, #2575fc, #00c9ff, #92fe9d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
+}
+
+.welcome-subtext {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 5px 0;
+}
+
+/* ========== 🌟 Filter Section ========== */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 40px auto;
+  justify-content: space-between;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  flex: 1;
+}
+
+.filter-group label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.filter-group select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.filter-group select:focus {
+  border-color: #4f8cff;
+}
+
+.separator {
+  width: 2px;
+  background-color: #000;
+  align-self: center;
+  height: 50px;
+}
+
+@media (max-width: 600px) {
+  .separator {
+    display: none;
+  }
+}
+
+/* ========== 📌 Navbar ========== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #233044;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.navbar-logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.navbar-menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 50px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.navbar-menu a:hover {
+  background-color: #4f8cff;
+}
+
+/* ========== 🧠 Feature Showcase ========== */
+.feature-showcase {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.feature-row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #ffffff, #f2f4f8);
+  border: 2px solid #d0d8e8;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-row:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.feature-row img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.feature-text {
+  flex: 1;
+}
+
+.feature-text h2 {
+  font-size: 2rem;
+  color: #1f2d3d;
+  margin-bottom: 12px;
+}
+
+.feature-text ul {
+  list-style: disc inside;
+  padding-left: 0;
+  color: #333;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+/* Alternating Layout */
+.image-left {
+  flex-direction: row;
+}
+
+.image-right {
+  flex-direction: row-reverse;
+}
+
+/* 💡 CTA Button */
+.feature-button {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.feature-button:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  transform: scale(1.05);
+}
+
+/* Responsive Feature Section */
+@media (max-width: 768px) {
+  .feature-row {
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  .feature-row img {
+    max-width: 100%;
+  }
+
+  .feature-text {
+    width: 100%;
+  }
+}
+
+/* ========== 🔽 Footer ========== */
+/* ========== 🔽 Footer ========== */
+.footer {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #ffffff;
+  padding-top: 40px;
+}
+
+.footer-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 40px 40px;
+  max-width: 1200px;
+  margin: auto;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.footer-logo-section {
+  flex: 1 1 250px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.footer-logo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.footer-subtext {
+  font-size: 0.95rem;
+  color: #dcdcdc;
+  line-height: 1.4;
+}
+
+.footer-about {
+  flex: 1 1 600px;
+  margin-bottom: 20px;
+}
+
+.footer-about h3 {
+  color: #00FFFF;
+  margin-bottom: 10px;
+}
+
+.footer-about p {
+  font-size: 0.95rem;
+  color: #e0f7ff;
+  line-height: 1.6;
+}
+
+/* 🧑‍💻 Team Members */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.team-member {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+  text-align: center;
+}
+
+.team-member:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+}
+
+.team-member img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.team-member h4 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+  color: #00FFFF;
+}
+
+.team-member p {
+  font-size: 14px;
+  color: #e0f7ff;
+}
+
+.team-member a {
+  display: inline-block;
+  margin: 5px 10px 0 10px;
+  color: #00FFFF;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.team-member a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 15px 0;
+  background-color: rgba(15, 32, 39, 0.8);
+  font-size: 0.85rem;
+  color: #a9bccf;
+}
