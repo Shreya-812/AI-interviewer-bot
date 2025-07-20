@@ -8,10 +8,21 @@
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>      <!--for importing user and password icons-->
     <script src="https://kit.fontawesome.com/adb581b45e.js" crossorigin="anonymous"></script>   <!--for importing social median icons-->
     <link rel="stylesheet" href="signin.css">
+    <link rel="stylesheet" href="home.css" />
 </head>
-
 <body>
-    <div class="container">
+  <nav class="navbar" style="position: fixed; top: 0; width: 100%; z-index: 1000;">
+    <div class="navbar-logo">AIML Interview Bot</div>
+    <div class="navbar-menu">
+      <a href="home.html">Home</a>
+      <a href="interview_home.html">Interview</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="signin.html">Sign In</a>
+    </div>
+  </nav>
+    <div class="container" style="padding-top: 70px;">
+        
         <div class="form-box login">
             <form method="post" action="/login">
                 <h1>Login</h1>
@@ -28,15 +39,8 @@
                 </div>
                 <button type="submit" class="btn">Login</button>
                 <p>or login with social platforms</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fa-brands fa-google"></i></a>
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-github"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                </div>
             </form>
         </div>
-
         <div class="form-box register">
             <form action="">
                 <h1>Registration</h1>
@@ -78,8 +82,6 @@
             </div>
         </div>
     </div>
-
     <script src="login-script.js"></script>
 </body>
-
 </html>

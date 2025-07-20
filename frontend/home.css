@@ -46,6 +46,85 @@ body, html {
   justify-content: space-between;
 }
 
+/* ========== 🌟 Feature Showcase Grid 2x2 ========== */
+.feature-showcase {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.feature-row {
+  flex: 0 0 calc(50% - 20px);
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 20px !important;
+  background: linear-gradient(135deg, #ffffff, #f2f4f8);
+  border: 2px solid #d0d8e8;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 300px;
+}
+
+.feature-row:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.feature-row img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.feature-text {
+  width: 100%;
+  text-align: center;
+}
+
+.feature-text h2 {
+  font-size: 2rem;
+  color: #1f2d3d;
+  margin-bottom: 12px;
+}
+
+.feature-text ul {
+  list-style: disc inside;
+  padding-left: 0;
+  color: #333;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+/* Responsive Feature Section */
+@media (max-width: 768px) {
+  .feature-showcase {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .feature-row {
+    width: 100% !important;
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  .feature-row img {
+    max-width: 100%;
+  }
+
+  .feature-text {
+    width: 100%;
+  }
+}
+
 .filter-group {
   display: flex;
   flex-direction: column;
@@ -183,11 +262,11 @@ body, html {
 
 /* Alternating Layout */
 .image-left {
-  flex-direction: row;
+  flex-direction: row !important;
 }
 
 .image-right {
-  flex-direction: row-reverse;
+  flex-direction: row-reverse !important;
 }
 
 /* 💡 CTA Button */
