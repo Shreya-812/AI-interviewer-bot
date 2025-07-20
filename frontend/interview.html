@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Interview Chat</title>
+  <link rel="stylesheet" href="interview.css">
+</head>
+<body>
+  <div class="chat-container">
+    <h2>AI Interview Chat</h2>
+    <div id="chat-box">
+      <!-- Chat messages will be appended here -->
+    </div>
+    <div class="input-area">
+      <select id="role-select" onchange="confirmRole()">
+        <option value="">-- Choose a Role --</option>
+        <option value="data analyst">🧮 Data Analyst</option>
+        <option value="hr">🤝 HR</option>
+        <option value="software engineer">💻 Software Engineer</option>
+        <option value="product manager">📦 Product Manager</option>
+        <option value="marketing analyst">📊 Marketing Analyst</option>
+      </select>
+      <div id="confirm-btn-box" style="display: none;">
+        <button onclick="selectRole()">Confirm Role</button>
+      </div>
+      <input type="text" id="user-input" placeholder="Type your answer..." style="display: none;">
+      <button onclick="sendMessage()" id="send-btn" style="display: none;">Send</button>
+    </div>
+    <div id="result-box" style="display: none; margin-top: 20px; background: #eef3f7; padding: 15px; border-radius: 8px;"></div>
+  </div>
+  <script>
+    const roleQuestions = {
+      "data analyst": [
+        "How do you approach data cleaning?",
+        "What is the difference between variance and standard deviation?",
+        "Describe a project where you used SQL."
+      ],
+      "hr": [
+        "Describe a time you handled conflict in a team.",
+        "What steps do you take in recruitment?",
+        "How do you ensure diversity and inclusion in hiring?"
+      ],
+      "software engineer": [
+        "Explain the difference between multithreading and multiprocessing.",
+        "How do you handle version control?",
+        "Describe your experience with REST APIs."
+      ],
+      "product manager": [
+        "How do you prioritize product features?",
+        "Describe a time you handled conflicting stakeholder requirements.",
+        "What’s your approach to user research?"
+      ],
+      "marketing analyst": [
+        "How do you measure the effectiveness of a marketing campaign?",
+        "What tools do you use for marketing data analysis?",
+        "How do you segment a market?"
+      ]
+    };
+
+    let selectedRole = null;
+    let questions = [];
+    let current = -1;
+    let answers = [];
+
+    function appendMessage(sender, message) {
+      const chatBox = document.getElementById("chat-box");
+      const msg = document.createElement("div");
+      msg.className = sender;
+      msg.innerText = `${sender === 'bot' ? '🤖' : 'You'}: ${message}`;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function confirmRole() {
+      const role = document.getElementById("role-select").value;
+      if (role) {
+        document.getElementById("confirm-btn-box").style.display = "block";
+      } else {
+        document.getElementById("confirm-btn-box").style.display = "none";
+      }
+    }
+
+    function selectRole() {
+      const role = document.getElementById("role-select").value;
+      if (roleQuestions[role]) {
+        selectedRole = role;
+        questions = roleQuestions[selectedRole];
+        current = 0;
+        document.getElementById("role-select").style.display = "none";
+        document.getElementById("confirm-btn-box").style.display = "none";
+        document.getElementById("user-input").style.display = "block";
+        document.getElementById("send-btn").style.display = "block";
+        appendMessage('bot', `✅ You selected '${selectedRole.toUpperCase()}'. Let's begin!`);
+        appendMessage('bot', questions[current]);
+      }
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("user-input");
+      const message = input.value.trim();
+      if (!message) return;
+
+      appendMessage('user', message);
+      input.value = "";
+
+      if (current >= 0 && current < questions.length) {
+        answers.push({ question: questions[current], answer: message });
+        current++;
+        if (current < questions.length) {
+          setTimeout(() => {
+            appendMessage('bot', questions[current]);
+          }, 500);
+        } else {
+          appendMessage('bot', "Thank you! Submitting your answers for evaluation...");
+          sendToBackend(answers);
+        }
+      }
+    }
+
+    function sendToBackend(data) {
+      fetch('http://localhost:8000/score', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ role: selectedRole, responses: data })
+      })
+      .then(response => response.json())
+      .then(result => {
+        document.getElementById("result-box").style.display = "block";
+        let html = `<h3>📝 Interview Result for ${selectedRole.toUpperCase()}</h3><ul>`;
+        result.forEach((item, index) => {
+          html += `<li><strong>Q${index + 1}:</strong> ${questions[index]}<br>
+                   <strong>Your Score:</strong> ${item.score}/5<br>
+                   <strong>Feedback:</strong> ${item.feedback}</li><br>`;
+        });
+        html += `</ul>`;
+        document.getElementById("result-box").innerHTML = html;
+        appendMessage('bot', "✅ Results are shown below this chat window.");
+      })
+      .catch(error => {
+        appendMessage('bot', "❌ Failed to connect to backend. Try again later.");
+        console.error(error);
+      });
+    }
+
+    window.onload = () => {
+      appendMessage('bot', "Welcome! Please select the role you're applying for and confirm to begin.");
+    }
+  </script>
+</body>
+</html>

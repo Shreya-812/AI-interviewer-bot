@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="contact.css"/>
+</head>
+<body>
+  <div class="contact-section">
+    <div class="container py-5">
+      <div class="row g-5 align-items-center">
+        <!-- Contact Info -->
+        <div class="col-md-6 d-flex flex-column justify-content-center text-white ps-md-5">
+          <h2 class="mb-4 fw-bold">Contact Us</h2>
+          <ul class="list-unstyled fs-5">
+            <li class="mb-3"><strong>Email:</strong> infointerview@ai.com</li>
+            <li class="mb-3"><strong>Phone:</strong> +91 9955786700</li>
+            <li class="mb-3"><strong>Address:</strong> 1944 Chandigarh, India</li>
+          </ul>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="col-md-6">
+          <div class="contact-form-box p-4 shadow-lg rounded-4 bg-glass text-white">
+            <h3 class="mb-4">Send us a message</h3>
+            <form id="contact-form" method="POST" action="contact_submission.html">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required/>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required/>
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message:</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+              </div>
+              <div class="d-flex justify-content-between">
+                <a href="contact_submission.html" class="btn btn-gradient">Send Message</a>
+                <a href="home.html" class="btn btn-outline-light">Back to Home</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

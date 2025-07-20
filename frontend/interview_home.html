@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interview - AIML Interview Bot</title>
+  <link rel="stylesheet" href="interview_home.css" />
+  <style>
+    .upgrade-btn {
+      text-decoration: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-logo">AIML Interview Bot</div>
+    <div class="navbar-menu">
+      <a href="home.html">Home</a>
+      <a href="interview_home.html">Interview</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="signin.html">Sign In</a>
+    </div>
+  </nav>
+
+  <section class="interview-section">
+    <h1 class="interview-title">Customize Your Interview</h1>
+    <div class="filter-container">
+      <div class="filter-group">
+        <label for="jobRole">Job Role</label>
+        <select id="jobRole">
+          <option value="">Select</option>
+          <option value="data analyst">Data Analyst</option>
+          <option value="hr">HR</option>
+          <option value="software engineer">Software Engineer</option>
+          <option value="product manager">Product Manager</option>
+          <option value="marketing analyst">Marketing Analyst</option>
+        </select>
+      </div>
+      <div class="separator"></div>
+      <div class="filter-group">
+        <label for="experience">Experience</label>
+        <select id="experience">
+          <option value="">Select</option>
+          <option value="0-1">0-1 Years</option>
+          <option value="1-3">1-3 Years</option>
+          <option value="3-5">3-5 Years</option>
+          <option value="5+">5+ Years</option>
+        </select>
+      </div>
+      <div class="separator"></div>
+      <div class="filter-group">
+        <label for="description">Topic</label>
+        <select id="description">
+          <option value="">Select</option>
+          <option value="system-design">System Design</option>
+          <option value="dsa">DSA Questions</option>
+          <option value="behavioral">Behavioral Round</option>
+        </select>
+      </div>
+    </div>
+    <div class="button-group">
+      <button class="start-btn" id="start-interview" onclick="startInterview()">Start Interview</button>
+      <button class="reset-btn" onclick="resetInterview()">Reset</button>
+      <a href="pricing.html" class="upgrade-btn">🚀 Upgrade</a>
+    </div>
+  </section>
+
+  <section class="chat-section" id="chat-section">
+    <h2>AI Interview Chat</h2>
+    <div id="chat-box" class="chat-box"></div>
+    <input type="text" id="user-input" placeholder="Type your answer..." style="display: none;">
+    <button onclick="sendMessage()" id="send-btn" style="display: none;">Send</button>
+    <div id="result-box" style="display: none; margin-top: 20px;"></div>
+  </section>
+
+  <section class="cards-section">
+    <div class="card">
+      <div class="card-image left-image"></div>
+      <div class="card-content">
+        <h3>Interactive Feedback</h3>
+        <p>Get real‑time suggestions on your answers during mock interviews.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <h3>Performance Analytics</h3>
+        <p>Track your progress over time with detailed performance stats.</p>
+      </div>
+      <div class="card-image right-image"></div>
+    </div>
+    <div class="card">
+      <div class="card-image left-image"></div>
+      <div class="card-content">
+        <h3>Question Library</h3>
+        <p>Access curated questions across job roles and difficulty levels.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const roleQuestions = {
+      "data analyst": [
+        "How do you approach data cleaning?",
+        "What is the difference between variance and standard deviation?",
+        "Describe a project where you used SQL."
+      ],
+      "hr": [
+        "Describe a time you handled conflict in a team.",
+        "What steps do you take in recruitment?",
+        "How do you ensure diversity and inclusion in hiring?"
+      ],
+      "software engineer": [
+        "Explain the difference between multithreading and multiprocessing.",
+        "How do you handle version control?",
+        "Describe your experience with REST APIs."
+      ],
+      "product manager": [
+        "How do you prioritize product features?",
+        "Describe a time you handled conflicting stakeholder requirements.",
+        "What’s your approach to user research?"
+      ],
+      "marketing analyst": [
+        "How do you measure the effectiveness of a marketing campaign?",
+        "What tools do you use for marketing data analysis?",
+        "How do you segment a market?"
+      ]
+    };
+
+    let selectedRole = null;
+    let questions = [];
+    let current = -1;
+    let answers = [];
+
+    function appendMessage(sender, message) {
+      const chatBox = document.getElementById("chat-box");
+      const msg = document.createElement("div");
+      msg.className = sender;
+      msg.innerText = `${sender === 'bot' ? '🤖' : 'You'}: ${message}`;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function startInterview() {
+      const role = document.getElementById("jobRole").value;
+
+      if (!role) {
+        alert("⚠️ Please select a job role before starting the interview.");
+        return;
+      }
+
+      if (!roleQuestions[role]) {
+        alert("❌ Invalid role selected.");
+        return;
+      }
+
+      selectedRole = role;
+      questions = roleQuestions[selectedRole];
+      current = 0;
+      answers = [];
+      document.getElementById("user-input").style.display = "block";
+      document.getElementById("send-btn").style.display = "block";
+
+      appendMessage('bot', `✅ You selected '${selectedRole.toUpperCase()}'. Let's begin!`);
+      appendMessage('bot', questions[current]);
+
+      document.getElementById("chat-section").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("user-input");
+      const message = input.value.trim();
+      if (!message) return;
+
+      appendMessage('user', message);
+      input.value = "";
+
+      if (current >= 0 && current < questions.length) {
+        answers.push({ question: questions[current], answer: message });
+        current++;
+        if (current < questions.length) {
+          setTimeout(() => {
+            appendMessage('bot', questions[current]);
+          }, 500);
+        } else {
+          appendMessage('bot', "Thank you! Submitting your answers for evaluation...");
+          sendToBackend(answers);
+        }
+      }
+    }
+
+    function sendToBackend(data) {
+      fetch('http://localhost:8000/score', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ role: selectedRole, responses: data })
+      })
+      .then(response => response.json())
+      .then(result => {
+        document.getElementById("result-box").style.display = "block";
+        let html = `<h3>📝 Interview Result for ${selectedRole.toUpperCase()}</h3><ul>`;
+        result.forEach((item, index) => {
+          html += `<li><strong>Q${index + 1}:</strong> ${questions[index]}<br>
+                   <strong>Your Score:</strong> ${item.score}/5<br>
+                   <strong>Feedback:</strong> ${item.feedback}</li><br>`;
+        });
+        html += `</ul>`;
+        document.getElementById("result-box").innerHTML = html;
+        appendMessage('bot', "✅ Results are shown below this chat window.");
+      })
+      .catch(error => {
+        appendMessage('bot', "❌ Failed to connect to backend. Try again later.");
+        console.error(error);
+      });
+    }
+
+    function resetInterview() {
+      document.getElementById("jobRole").value = "";
+      document.getElementById("experience").value = "";
+      document.getElementById("description").value = "";
+      document.getElementById("chat-box").innerHTML = "";
+      document.getElementById("user-input").style.display = "none";
+      document.getElementById("send-btn").style.display = "none";
+      document.getElementById("user-input").value = "";
+      document.getElementById("result-box").style.display = "none";
+      document.getElementById("result-box").innerHTML = "";
+
+      selectedRole = null;
+      questions = [];
+      current = -1;
+      answers = [];
+
+      appendMessage('bot', "Interview has been reset. Please select your role and click 'Start Interview' to begin.");
+    }
+
+    window.onload = () => {
+      const role = document.getElementById("jobRole").value;
+      if (role) {
+        appendMessage('bot', `Welcome! You're applying for '${role.toUpperCase()}'. Click 'Start Interview' to begin.`);
+      } else {
+        appendMessage('bot', "Welcome! Please select your role and click 'Start Interview' to begin.");
+      }
+    };
+  </script>
+
+</body>
+</html>
