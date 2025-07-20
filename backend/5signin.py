@@ -1,6 +1,11 @@
+from fastapi import HTTPException, Form
+from models import fake_users
+from fastapi import FastAPI
+
+app = FastAPI()
+
 @app.post("/login")
 def login(username: str = Form(...), password: str = Form(...)):
-    from backend11.models import fake_users
     user = fake_users.get(username)
     if user and user["password"] == password:
         return {"message": "Login successful"}
