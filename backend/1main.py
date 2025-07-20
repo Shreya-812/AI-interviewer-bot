@@ -2,8 +2,8 @@ from fastapi import FastAPI, HTTPException, Request, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import EmailStr
-from backend11.schemas import Message, InterviewRequest, InterviewFeedback
-from backend11.utils import evaluate_response, generate_feedback
+from schemas import Message, InterviewRequest, InterviewFeedback
+from utils import evaluate_response, generate_feedback
 
 app = FastAPI()
 
